@@ -7,6 +7,35 @@ Sign in, scan your items, review what will change, and apply. That is the whole
 app — the replacement is baked in, so there is nothing to configure and no way
 to accidentally run a different find-and-replace.
 
+## Download
+
+Grab the file for your system from the
+[latest release](https://github.com/whatever-industries/archive_description_updater/releases/latest).
+Everything is bundled — there is nothing to install and no setup.
+
+| Platform | File |
+|----------|------|
+| macOS (Apple Silicon) | `Archive.org.Redump.Link.Updater_macOS_v1.0.0.zip` |
+| Windows | `Archive.org.Redump.Link.Updater_Windows_v1.0.0.exe` |
+| Linux | `Archive.org.Redump.Link.Updater_Linux_v1.0.0.AppImage` |
+
+### First run
+
+The app is not signed with a paid developer certificate, so each system will
+warn you once about running software from an unidentified developer. This is
+expected, and only happens the first time.
+
+- **macOS** — unzip, then **right-click the app and choose Open**, then Open
+  again in the dialog. Double-clicking the first time will be refused.
+- **Windows** — if a blue "Windows protected your PC" box appears, click
+  **More info**, then **Run anyway**.
+- **Linux** — mark it executable before running it:
+
+  ```sh
+  chmod +x "Archive.org.Redump.Link.Updater_Linux_v1.0.0.AppImage"
+  ./Archive.org.Redump.Link.Updater_Linux_v1.0.0.AppImage
+  ```
+
 ## What it changes
 
 The rewrite applies everywhere the domain appears, including inside links:
@@ -22,25 +51,6 @@ alone — `notredump.org` and `redump.organization` are not touched.
 
 Only the **description** field is modified. Titles, files, and every other
 field are left exactly as they are.
-
-## Running it
-
-Install [Rust](https://rustup.rs), then:
-
-```sh
-cargo run --release
-```
-
-The built binary lands at `target/release/archive-org-redump-link-updater` and is self-contained —
-copy it to another machine of the same OS and it just runs. The same source
-builds on macOS, Windows, and Linux.
-
-On Linux you may need the usual GUI development packages first:
-
-```sh
-sudo apt install libgtk-3-dev libxcb-render0-dev libxcb-shape0-dev \
-                 libxcb-xfixes0-dev libxkbcommon-dev libssl-dev
-```
 
 ## Signing in
 
@@ -86,12 +96,3 @@ overwrite an edit made in the meantime. Items already using `redump.info` are
 skipped rather than rewritten.
 
 Failures are listed in the Log panel at the bottom and never stop the run.
-
-## Tests
-
-```sh
-cargo test
-```
-
-The replacement logic is covered by unit tests, including URL forms, casing,
-repeated occurrences, and the lookalike domains that must not change.
