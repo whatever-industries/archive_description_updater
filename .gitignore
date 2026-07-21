@@ -1,0 +1,11 @@
+/target
+
+# Never publish credentials. The parent directory holds maintenance scripts
+# with plaintext account passwords - keep this repo scoped to the app only.
+*.ini
+*.log
+done_*.txt
+remaining_ids.txt
+run_*.out
+ia.ini
+.env

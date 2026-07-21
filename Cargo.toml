@@ -1,0 +1,25 @@
+[package]
+name = "archive-org-redump-link-updater"
+version = "1.0.0"
+edition = "2024"
+
+[dependencies]
+eframe = "0.35"
+# rustls + webpki-roots keeps TLS self-contained, so the binary needs no
+# system OpenSSL on any platform.
+reqwest = { version = "0.13", default-features = false, features = [
+    "blocking",
+    "json",
+    "form",
+    "query",
+    "rustls",
+    "webpki-roots",
+    "charset",
+    "http2",
+] }
+serde_json = "1"
+regex = "1"
+
+[profile.release]
+opt-level = 2
+strip = true
